@@ -2,12 +2,17 @@ import mongoose from "mongoose";
 import express from "express";
 import bodyParser from "body-parser"
 import { connectToDB } from "./db.js";
+import cors from 'cors';
 import { addNewSong, deleteSongById, insertDocs, listDocs, listOfSongsByDirector, listOfSongsByDirectorBySinger, listSongOfSingerFromMovie, listSongsInTable } from "./controllers/crud.js";
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
+}))
+
+app.use(cors({
+  origin: '*'
 }))
 
 

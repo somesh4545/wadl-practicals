@@ -2,10 +2,10 @@ import Song from '../models/schema.js';
 
 export const insertDocs = async (req, res) => {
   const {songs} = req.body;
+  const parsed_songs = JSON.parse(songs);
+  await Song.insertMany(parsed_songs);
 
-  await Song.insertMany(songs);
-
-  res.send("Inserted successfully")
+  res.json("Inserted successfully")
 }
 
 export const listDocs = async (req, res) => {
@@ -53,16 +53,14 @@ export const listOfSongsByDirectorBySinger = async (req, res) => {
 export const deleteSongById = async(req, res) => {
   const {song_id} = req.params;
   await Song.findOneAndDelete({_id: song_id});
-  res.send('deleted sucessfully')
+  res.json('deleted sucessfully')
 }
 
 
 export const addNewSong = async (req, res) => {
-  const {song_body} = req.body;
-  
-  const response = await Song.create({...song_body});
-
-  res.json({response: response})
+  console.log(req.body)
+  const response = await Song.create({...req.body.song_body});
+  res.json("Success")
 
 }
 
