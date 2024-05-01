@@ -39,8 +39,8 @@ export const getStudsScoredAbove25 = async (req, res ) => {
 
 export const getLessThan40 = async (req, res) => {
   const result = await StudentMarks.find({
-    wad_marks: {$lt: 30},
-    cc_marks: {$lt: 30},
+    wad_marks: {$lt: 40},
+    cc_marks: {$lt: 40},
   })
   var data = "";
   for(const stud of result) {

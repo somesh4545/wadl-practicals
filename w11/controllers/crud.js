@@ -6,8 +6,7 @@ export const updateMarks = async (req, res) => {
     {roll_no: roll_no}, 
     {$inc: {dsbda_marks: 10, wad_marks: 10, cc_marks: 10}},
      {new: true})
-
-  res.json({result});
+  res.json("Updated succesfully");
 }
 
 export const displayStudent = async (req, res) => {
@@ -24,14 +23,18 @@ export const displayStudent = async (req, res) => {
   <body>
       <table border="1">
         <tr>
+            <th>ID</th>
+            <th>Roll No</th>
             <th>Name</th>
-            <th>Age</th>
+            <th>wad_marks</th>
+            <th>cc_marks</th>
+            <th>cns_marks</th>
         </tr>
 
    `;
 
   for(const stud of students) {
-    html += `<tr> <td>${stud.roll_no}</td> <td>${stud.name}</td> </tr>`
+    html += `<tr> <td>${stud._id}</td> <td>${stud.roll_no}</td> <td>${stud.name}</td> <td>${stud.wad_marks}</td> <td>${stud.cc_marks}</td> <td>${stud.dsbda_marks}</td> <td>${stud.cns_marks}</td> </tr>`
   }
 
   html += ` </table>
